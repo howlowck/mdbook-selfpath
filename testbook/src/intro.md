@@ -1,3 +1,3 @@
 # Introduction
 
-[!!test!!](http://example/{{ #selfpath }})
+[!!test!!](http://example/{{#selfpath}})
