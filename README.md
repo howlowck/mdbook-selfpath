@@ -35,7 +35,7 @@ Here is the configuration available:
 Insert a directive in your Markdown file where you want the file path to appear. For example:
 
 ```handlebars
-[Feedback](https://github.com/howlowck/example-repo/files/blob/main/{{ #selfpath }})
+[Feedback](https://github.com/howlowck/example-repo/files/blob/main/{{ selfpath }})
 ```
 
 The output will be

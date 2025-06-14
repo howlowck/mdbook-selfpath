@@ -43,7 +43,7 @@ impl Preprocessor for SelfPathPreprocessor {
         eprintln!("Processing book: {}", book_title);
 
         // Regex to match {{#selfpath}}, {{ #selfpath }}, etc.
-        let selfpath_re = Regex::new(r"\{\{\s*#selfpath\s*\}\}").unwrap();
+        let selfpath_re = Regex::new(r"\{\{\s*selfpath\s*\}\}").unwrap();
 
         // Iterate through all chapters in the book (including subchapters)
         book.for_each_mut(|item: &mut BookItem| {
