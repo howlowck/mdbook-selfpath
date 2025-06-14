@@ -2,6 +2,7 @@ use mdbook::BookItem;
 use mdbook::book::Book;
 use mdbook::errors::Error;
 use mdbook::preprocess::{Preprocessor, PreprocessorContext};
+use regex::Regex;
 use std::path::Path;
 use std::path::PathBuf;
 
@@ -41,6 +42,9 @@ impl Preprocessor for SelfPathPreprocessor {
             .unwrap_or_else(|| "Untitled Book".to_string());
         eprintln!("Processing book: {}", book_title);
 
+        // Regex to match {{#selfpath}}, {{ #selfpath }}, etc.
+        let selfpath_re = Regex::new(r"\{\{\s*#selfpath\s*\}\}").unwrap();
+
         // Iterate through all chapters in the book (including subchapters)
         book.for_each_mut(|item: &mut BookItem| {
             if let BookItem::Chapter(chapter) = item {
@@ -58,8 +62,8 @@ impl Preprocessor for SelfPathPreprocessor {
                     }
                     // Convert path to a forward-slash string (for consistency across OS)
                     let rel_path_str = rel_path.to_string_lossy().replace('\\', "/");
-                    // Perform the replacement in the chapter content
-                    chapter.content = chapter.content.replace("{{ #selfpath }}", &rel_path_str);
+                    // Perform the replacement in the chapter content using regex
+                    chapter.content = selfpath_re.replace_all(&chapter.content, rel_path_str.as_str()).to_string();
                 }
             }
         });
