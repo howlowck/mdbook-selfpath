@@ -31,16 +31,6 @@ impl Preprocessor for SelfPathPreprocessor {
 
         // Determine the source directory name (relative to book root) from config or default "src"
         let src_dir_name = &ctx.config.book.src;
-        // log to console src_dir_name
-        eprintln!("Using source directory name: {:?}", src_dir_name.to_str());
-
-        let book_title = ctx
-            .config
-            .book
-            .title
-            .clone()
-            .unwrap_or_else(|| "Untitled Book".to_string());
-        eprintln!("Processing book: {}", book_title);
 
         // Regex to match {{#selfpath}}, {{ #selfpath }}, etc.
         let selfpath_re = Regex::new(r"\{\{\s*selfpath\s*\}\}").unwrap();
