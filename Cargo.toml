@@ -1,0 +1,14 @@
+[package]
+name = "mdbook-selfpath"
+version = "0.1.0"
+edition = "2024"
+license = "MIT OR Apache-2.0"
+description = "A preprocessor for mdbook that allows self-referencing paths"
+keywords = ["mdbook", "preprocessor"]
+
+[dependencies]
+clap = "4.5.39"
+lazy_static = "1.5.0"
+mdbook = "0.4.*"
+regex = "1.11.1"
+serde_json = "1.0.140"

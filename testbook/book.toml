@@ -1,0 +1,11 @@
+[book]
+title = "Test Book for mdbook-selfpath"
+authors = ["Hao Luo"]
+description = "Learning Rust"
+language = "en"
+
+[build]
+create-missing = false
+
+[preprocessor.selfpath]
+include-file-ext = true
