@@ -34,6 +34,7 @@ impl Preprocessor for SelfPathPreprocessor {
 
         // Regex to match {{#selfpath}}, {{ #selfpath }}, etc.
         let selfpath_re = Regex::new(r"\{\{\s*selfpath\s*\}\}").unwrap();
+        let selftitle_re = Regex::new(r"\{\{\s*selftitle\s*\}\}").unwrap();
 
         // Iterate through all chapters in the book (including subchapters)
         book.for_each_mut(|item: &mut BookItem| {
@@ -54,6 +55,12 @@ impl Preprocessor for SelfPathPreprocessor {
                     let rel_path_str = rel_path.to_string_lossy().replace('\\', "/");
                     // Perform the replacement in the chapter content using regex
                     chapter.content = selfpath_re.replace_all(&chapter.content, rel_path_str.as_str()).to_string();
+
+                    let filename = source_path.file_name().and_then(|s| s.to_str()).unwrap_or("noname");
+                    let without_ext = filename
+                        .strip_suffix(".md")
+                        .unwrap_or(filename);
+                    chapter.content = selftitle_re.replace_all(&chapter.content, without_ext).to_string();
                 }
             }
         });

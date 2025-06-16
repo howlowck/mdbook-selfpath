@@ -35,13 +35,13 @@ Here is the configuration available:
 Insert a directive in your Markdown file where you want the file path to appear. For example:
 
 ```handlebars
-[Feedback](https://github.com/howlowck/example-repo/files/blob/main/{{ selfpath }})
+[{{ selftitle }}](https://github.com/howlowck/example-repo/files/blob/main/{{ selfpath }})
 ```
 
 The output will be
 
 ```md
-[Feedback](https://github.com/howlowck/example-repo/files/blob/main/src/intro.md)
+[Intro](https://github.com/howlowck/example-repo/files/blob/main/src/Intro.md)
 ```
 
 When you build your book, this will be replaced with the relative path to the current Markdown file.
